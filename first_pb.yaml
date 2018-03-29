@@ -1,0 +1,10 @@
+---
+- hosts: main
+  tasks:
+    - name: test install
+      yum:
+        name: google-authenticator
+        state: installed
+      become: true
+      become_method: su
+      become_user: root

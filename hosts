@@ -1,9 +1,5 @@
-[management]
-jupiter.guldar.xyz
+[infra]
+#mercury.my ansible_port=2244 ansible_user=dnov
+79.17.1,23 ansible_user=centos
+95.16.1.333 ansible_user=centos
 
-[frontend]
-mercury.guldar.xyz
-venera.guldar.xyz
-
-[database]
-neptun.guldar.xyz

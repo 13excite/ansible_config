@@ -1,0 +1,70 @@
+---
+- hosts: infra
+
+  tasks:
+  - include_vars: users.yaml
+
+  - name: Add users | create users, shell, home dirs
+    user: name={{ item.username }} shell=/bin/bash createhome=yes comment='create with ansible'
+    with_items: '{{users}}'
+    become: true
+    become_method: su
+    become_user: root
+
+  - name: Setup | authorized key upload
+    authorized_key: user={{ item.username }}
+      key="{{ lookup('file', 'pub_keys/{{ item.username }}.pub') }}"
+    with_items: '{{users}}'
+    become: true
+    become_method: su
+    become_user: root
+
+  - name: common | install packages
+    yum: name={{ item }} state=installed
+    with_items:
+       - git
+       - vim
+       - wget
+    tags: common
+    become: true
+    become_method: su
+    become_user: root
+
+  - name: Create basrc
+    template:
+      src: templates/.bashrc
+      dest: "/home/{{ item.username }}/.bashrc"
+      owner: "{{ item.username }}"
+      group: "{{ item.username }}"
+      mode: u=rw,g=r,o=r
+      force: yes
+    with_items: "{{ users }}"
+    become: true
+    become_method: su
+    become_user: root
+
+  - name: Create vimrc
+    template:
+      src: templates/.vimrc
+      dest: "/home/{{ item.username }}/.vimrc"
+      owner: "{{ item.username }}"
+      group: "{{ item.username }}"
+      mode: u=rw,g=r,o=r
+      force: yes
+    with_items: "{{ users }}"
+    become: true
+    become_method: su
+    become_user: root
+
+  - name: Create python
+    template:
+      src: templates/.pythonrc
+      dest: "/home/{{ item.username }}/.pythonrc"
+      owner: "{{ item.username }}"
+      group: "{{ item.username }}"
+      mode: u=rw,g=r,o=r
+      force: yes
+    with_items: "{{ users }}"
+    become: true
+    become_method: su
+    become_user: root

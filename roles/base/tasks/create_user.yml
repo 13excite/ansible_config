@@ -2,7 +2,7 @@
 - hosts: infra
 
   tasks:
-  - include_vars: users.yaml
+  - include_vars: users.yml
 
   - name: Add users | create users, shell, home dirs
     user: name={{ item.username }} shell=/bin/bash createhome=yes comment='create with ansible'

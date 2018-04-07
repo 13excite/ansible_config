@@ -1,0 +1,40 @@
+---
+#- include_vars: users.yml
+- name: Create basrc
+  template:
+    src: templates/.bashrc
+    dest: "/home/{{ item.username }}/.bashrc"
+    owner: "{{ item.username }}"
+    group: "{{ item.username }}"
+    mode: u=rw,g=r,o=r
+    force: yes
+  with_items: "{{ users }}"
+  become: true
+  become_method: su
+  become_user: root
+
+- name: Create vimrc
+  template:
+    src: templates/.vimrc
+    dest: "/home/{{ item.username }}/.vimrc"
+    owner: "{{ item.username }}"
+    group: "{{ item.username }}"
+    mode: u=rw,g=r,o=r
+    force: yes
+  with_items: "{{ users }}"
+  become: true
+  become_method: su
+  become_user: root
+
+- name: Create python
+  template:
+    src: templates/.pythonrc
+    dest: "/home/{{ item.username }}/.pythonrc"
+    owner: "{{ item.username }}"
+    group: "{{ item.username }}"
+    mode: u=rw,g=r,o=r
+    force: yes
+  with_items: "{{ users }}"
+  become: true
+  become_method: su
+  become_user: root

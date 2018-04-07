@@ -1,0 +1,7 @@
+---
+- include_vars: users.yml
+- include_vars: repo.yml
+
+- include_tasks: create_user.yml
+- include_tasks: yum_repo.yml
+- include_tasks: homes.yml

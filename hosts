@@ -1,5 +1,5 @@
 [infra]
 #mercury.my ansible_port=2244 ansible_user=dnov
-79.17.1,23 ansible_user=centos
-95.16.1.333 ansible_user=centos
+79.137.174.58 ansible_user=centos
+
 

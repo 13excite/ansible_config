@@ -17,14 +17,4 @@
   become_method: su
   become_user: root
 
-- name: common | install packages
-  yum: name={{ item }} state=installed
-  with_items:
-      - git
-      - vim
-      - wget
-  tags: common
-  become: true
-  become_method: su
-  become_user: root
 

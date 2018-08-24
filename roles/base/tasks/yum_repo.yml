@@ -31,7 +31,7 @@
         - atop
         - strace
         - htop
-        -  ethtool
+        - ethtool
         - lsof
         - sysstat
         - tmux
@@ -41,6 +41,7 @@
         - bind-utils
         - traceroute
         - mdadm
+        - zsh
     tags: common
     become: true
     become_method: su

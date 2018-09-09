@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import sys, os, urllib2, json, re, subprocess, yaml
 
-HOSTS       = '/tmp/test.yml'
+HOSTS       = "/tmp/test.yml"
 GPG         = "/usr/local/bin/gpg"
 PASS        = "/path/pass.gpg"
 

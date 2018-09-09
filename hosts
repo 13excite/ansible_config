@@ -1,5 +1,5 @@
 [infra]
 #mercury.my ansible_port=2244 ansible_user=dnov
-79.137.174.58 ansible_user=centos
+79.137.174.58 ansible_user=centos ansible_port=2244
 #[proxy]
-#vps505858.ovh.net ansible_user=dulenov ansible_port=2244
+#vps558858.ovh.net ansible_user=dulenov ansible_port=2244

@@ -42,6 +42,7 @@
         - traceroute
         - mdadm
         - zsh
+        - tcpdump
     tags: common
     become: true
     become_method: su

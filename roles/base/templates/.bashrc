@@ -58,3 +58,5 @@ esac
 export PYTHONSTARTUP=~/.pythonrc
 ANSIBLE_CONFIG=~/.ansible/ansible.cfg
 export ANSIBLE_CONFIG
+PATH=$PATH:/usr/pgsql-10/bin
+export PATH

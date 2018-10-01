@@ -1,0 +1,46 @@
+---
+#- include_vars: users.yml
+- name: Set user dulenov
+  set_fact:
+    user: 'dulenov'
+- name: Create basrc 
+  template:
+    src: templates/.bashrc
+    dest: "/home/{{ user }}/.bashrc"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: u=rw,g=r,o=r
+    force: yes
+    #when: ( users.username.item.homes | default(false) | bool ) 
+    #with_items: "{{ users.username.keys() }}"
+  become: true
+  become_method: su
+  become_user: root
+
+- name: Create vimrc
+  template:
+    src: templates/.vimrc
+    dest: "/home/{{ user }}/.vimrc"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: u=rw,g=r,o=r
+    force: yes
+    #when: ( users.username.item.homes | default(false) | bool ) 
+    #with_items: "{{ users.username.keys() }}"
+  become: true
+  become_method: su
+  become_user: root
+
+- name: Create python
+  template:
+    src: templates/.pythonrc
+    dest: "/home/{{ user }}/.pythonrc"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: u=rw,g=r,o=r
+    force: yes
+    #when: ( users.username.item.homes | default(false) | bool ) 
+  #with_items: "{{ users.username.keys() }}"
+  become: true
+  become_method: su
+  become_user: root

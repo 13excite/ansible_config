@@ -8,6 +8,7 @@
   roles:
     - { role: base, tags: [ 'role_base' ] }
     - { role: disable-selinux, tags: [ 'role_dis_selinux' ] }
+    - { role: ssh, tags: [ 'role_ssh' ] }
 
 # - hosts: kube_master
 #   environment:

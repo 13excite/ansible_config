@@ -9,6 +9,8 @@
   become: true
   become_method: su
   become_user: root
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+
 
 - name: Disable SELinux 
   selinux:
@@ -16,3 +18,4 @@
   become: true
   become_method: su
   become_user: root
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'

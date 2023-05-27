@@ -6,7 +6,6 @@ GPG         = "/usr/local/bin/gpg"
 PASS        = "/path/pass.gpg"
 
 class HostsFromYAML():
-    
     def __init__(self, filename):
         self.filename = filename
 
@@ -21,7 +20,6 @@ class HostsFromYAML():
             sys.exit(1)
 
 class GPGPass():
-    
     def __init__(self, *args, **kwargs):
         self.pwds = list()
 
@@ -31,7 +29,7 @@ class GPGPass():
                 m = re.search('^(\S+)\t(.+)$', line)
                 if m:
                     self.pwds.append({"re": m.group(1), "pass": m.group(2)})
-            
+
         except:
            sys.stderr.write("can't decrypt\n")
            sys.exit(1)

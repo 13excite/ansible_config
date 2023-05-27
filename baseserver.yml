@@ -1,9 +1,28 @@
 ---
-- hosts: infra
-  #  gather_facts: no
-  #pre_tasks:
-  # - name: 'install python2'
-  #   raw: sudo apt-get -y install python
+- hosts: all
+  environment:
+    PATH: /usr/sbin:/sbin:{{ ansible_env.PATH }}
+  become: yes
+  become_method: su
+  become_user: root
   roles:
-    - base
-    - disable-selinux
+    - { role: base, tags: [ 'role_base' ] }
+    - { role: disable-selinux, tags: [ 'role_dis_selinux' ] }
+
+# - hosts: kube_master
+#   environment:
+#     PATH: /usr/sbin:/sbin:{{ ansible_env.PATH }}
+#   become: yes
+#   become_method: su
+#   become_user: root
+#   roles:
+#     - kube-master
+
+# - hosts: kube_nodes
+#   environment:
+#   PATH: /usr/sbin:/sbin:{{ ansible_env.PATH }}
+#   become: yes
+#   become_method: su
+#   become_user: root
+#   roles:
+#   - kube-workers

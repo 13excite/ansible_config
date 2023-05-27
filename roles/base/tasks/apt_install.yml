@@ -1,0 +1,24 @@
+---
+  - name: common | install packages
+    package: name={{ item }} state=present update_cache=yes
+    with_items:
+        - git
+        - vim
+        - wget
+        - atop
+        - strace
+        - htop
+        - ethtool
+        - lsof
+        - sysstat
+        - tmux
+        - nmap
+        - net-tools
+        - traceroute
+        - mdadm
+        - zsh
+        - tcpdump
+    tags: common
+    become_method: su
+    become_user: root
+    when: ansible_distribution == 'Debian'

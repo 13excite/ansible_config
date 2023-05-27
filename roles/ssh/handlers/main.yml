@@ -1,0 +1,9 @@
+---
+
+- name: Restart the SSH service
+  service:
+    name: "{{ sshd_service }}"
+    state: restarted
+  when:
+    - sshd_allow_restart|bool
+  listen: restart_sshd

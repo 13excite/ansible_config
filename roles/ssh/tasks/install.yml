@@ -1,0 +1,24 @@
+---
+- name: Install ssh packages
+  apt:
+    pkg: "{{ sshd_packages }}"
+    state: present
+
+- name: Configuration
+  template:
+    src: sshd_config.j2
+    dest: "{{ sshd_config_file }}"
+    owner: "{{ sshd_config_owner }}"
+    group: "{{ sshd_config_group }}"
+    mode: "{{ sshd_config_mode }}"
+    validate: "{{ sshd_binary }} -t -f %s"
+    backup: "{{ sshd_backup }}"
+  notify: restart_sshd
+
+- name: Service enabled and running
+  service:
+    name: "{{ sshd_service }}"
+    enabled: true
+    state: started
+  when:
+    - sshd_manage_service|bool

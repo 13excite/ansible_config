@@ -1,0 +1,19 @@
+---
+sshd_enable: true
+
+sshd_manage_service: true
+
+sshd_allow_restart: true
+
+sshd_backup: true
+
+sshd_config_owner: root
+sshd_config_group: root
+sshd_config_mode: "0644"
+sshd_config_file: /etc/ssh/sshd_config
+sshd_binary: /usr/sbin/sshd
+sshd_service: ssh
+
+sshd_packages:
+  - openssh-server
+  - openssh-client

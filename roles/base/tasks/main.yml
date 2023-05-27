@@ -1,7 +1,10 @@
 ---
 - include_vars: users.yml
-- include_vars: repo.yml
+  #- include_vars: repo.yml
 
 - include_tasks: create_user.yml
-- include_tasks: yum_repo.yml
 - include_tasks: homes.yml
+- include_tasks: yum_repo.yml
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+- include_tasks: apt_install.yml
+  when: ansible_distribution == 'Debian'

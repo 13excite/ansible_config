@@ -1,4 +1,3 @@
 ---
-#- include_vars: users.yml
-- name: Create home folder 
+- name: Create home folder
   include_tasks: "dulenov.yml"

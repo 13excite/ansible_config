@@ -1,9 +1,9 @@
 ---
-#- include_vars: users.yml
+- include_vars: users.yml
 - name: Set user dulenov
   set_fact:
     user: 'dulenov'
-- name: Create basrc 
+- name: Create basrc
   template:
     src: templates/.bashrc
     dest: "/home/{{ user }}/.bashrc"
@@ -12,7 +12,7 @@
     mode: u=rw,g=r,o=r
     force: yes
     #when: ( users.username.item.homes | default(false) | bool ) 
-    #with_items: "{{ users.username.keys() }}"
+    #with_items: "{{ users.username.keys() | list}}"
   become: true
   become_method: su
   become_user: root
@@ -39,8 +39,8 @@
     group: "{{ user }}"
     mode: u=rw,g=r,o=r
     force: yes
-    #when: ( users.username.item.homes | default(false) | bool ) 
-  #with_items: "{{ users.username.keys() }}"
+  when: ( users.username.item.homes | default(false) | bool ) 
+  with_items: "{{ users.username.keys() }}"
   become: true
   become_method: su
   become_user: root

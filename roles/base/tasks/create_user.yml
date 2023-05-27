@@ -4,7 +4,7 @@
 
 - name: Add users | create users, shell, home dirs
   user: name={{ item }} shell=/bin/bash createhome=yes comment='create with ansible'
-  with_items: '{{users.username.keys()}}'
+  with_items: '{{users.username.keys()|list}}'
   become: true
   become_method: su
   become_user: root
@@ -12,7 +12,7 @@
 - name: Setup | authorized key upload
   authorized_key: user={{ item }}
     key="{{ lookup('file', 'pub_keys/{{ item }}.pub') }}"
-  with_items: '{{users.username.keys()}}'
+  with_items: '{{users.username.keys()| list}}'
   become: true
   become_method: su
   become_user: root
